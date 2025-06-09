@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProdutosAPI.Dtos;
 using ProdutosAPI.Services.Abstract;
+using ProdutosAPI.Utils;
 
 namespace ProdutosAPI.Controllers
 {
@@ -26,12 +27,14 @@ namespace ProdutosAPI.Controllers
         }
 
         [HttpGet]
+        [BasicAuth]
         public async Task<IActionResult> GetAll()
         {
             return Ok(await _usuarioServ.GetAllAsync());
         }
 
         [HttpGet("{id}")]
+        [BasicAuth]
         public async Task<IActionResult> GetById(int id)
         {
             var usuario = await _usuarioServ.GetByIdAsync(id);
@@ -43,6 +46,7 @@ namespace ProdutosAPI.Controllers
         }
 
         [HttpPut("{id}")]
+        [BasicAuth]
         public async Task<IActionResult> Update(int id, UsuarioDTO usuarioDTO)
         {
             await _usuarioServ.UpdateAsync(id, usuarioDTO);
@@ -50,6 +54,7 @@ namespace ProdutosAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [BasicAuth]
         public async Task<IActionResult> Delete(int id)
         {
             await _usuarioServ.DeleteAsync(id);

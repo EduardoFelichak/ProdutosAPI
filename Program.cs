@@ -21,7 +21,7 @@ namespace ProdutosAPI
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-
+            
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddDbContext<ConnectionContext>(options =>
@@ -33,11 +33,6 @@ namespace ProdutosAPI
             builder.Services.AddScoped<IProdutoServ, ProdutoServ>();
 
             builder.Services.AddAutoMapper(typeof(MappingProfile));
-
-            builder.Services.AddControllers(options =>
-            {
-                options.Filters.Add<BasicAuthAttribute>();
-            });
 
             builder.Services.AddSwaggerGen(c =>
             {

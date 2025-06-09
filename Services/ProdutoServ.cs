@@ -51,7 +51,7 @@ namespace ProdutosAPI.Services
             {
                 throw new KeyNotFoundException($"Produto com ID {id} não encontrado.");
             }
-
+            produtoDto.SetNewId(id);
             _mapper.Map(produtoDto, produto);
             await _produtoRepo.UpdateAsync(produto);
         }

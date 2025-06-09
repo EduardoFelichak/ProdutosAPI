@@ -46,7 +46,7 @@ namespace ProdutosAPI.Services
             {
                 throw new KeyNotFoundException($"Usuário com {id} não encontrado.");
             }
-
+            usuarioDto.SetNewId(id);
             _mapper.Map(usuarioDto, usuario);
             await _usuarioRepo.UpdateAsync(usuario);
         }
