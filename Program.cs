@@ -17,6 +17,17 @@ namespace ProdutosAPI
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            var myAllowSpecificOrigins = "_myAllowSpecificOrigins";
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy(name: myAllowSpecificOrigins,
+                    policy =>
+                    {
+                        policy.AllowAnyOrigin()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                    });
+            });
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -82,7 +93,7 @@ namespace ProdutosAPI
             }
 
             app.UseHttpsRedirection();
-
+            app.UseCors(myAllowSpecificOrigins);
             app.UseAuthorization();
 
 
